@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user;
+package api;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,6 +31,13 @@ public class UserLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        
+        
+        
+        
+        
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -38,9 +46,10 @@ public class UserLogin extends HttpServlet {
             out.println("<title>Servlet UserLogin</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserLogin at " + request.getContextPath() + "</h1>");
+//            out.println("<img src=\"./images/img.jpg\" /> ");
             out.println("</body>");
             out.println("</html>");
+            out.println(getServletContext().getContextPath() + File.separator + "images" + File.separator);
         }
     }
 
