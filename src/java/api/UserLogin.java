@@ -1,95 +1,45 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package api;
 
+import com.google.gson.Gson;
+import database.Database;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import json.UserLoginResponse;
+import util.Constants;
 
-/**
- *
- * @author Acer
- */
 public class UserLogin extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-        
-        
-        
-        
-        
-        
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UserLogin</title>");            
-            out.println("</head>");
-            out.println("<body>");
-//            out.println("<img src=\"./images/img.jpg\" /> ");
-            out.println("</body>");
-            out.println("</html>");
-            out.println(getServletContext().getContextPath() + File.separator + "images" + File.separator);
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String email = request.getParameter(Constants.USER_EMAIL);
+        String password = request.getParameter(Constants.USER_PASSWORD);
+
+        UserLoginResponse res = new UserLoginResponse();
+        
+        try {
+            if (Database.executeQuery("select * from user where email = \"" + email + "\" and password = \"" + password + "\";").next())
+                res.setResponseCode("true");
+            else
+                res.setResponseCode("false");
+            Database.destroyDb();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(new Gson().toJson(res));
+        
+        PrintWriter pw = response.getWriter();
+        response.setContentType("text/html;charset=UTF-8");
+        pw.write(new Gson().toJson(res));
+        pw.flush();
+        pw.close();
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
