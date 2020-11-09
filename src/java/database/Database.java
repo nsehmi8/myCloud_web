@@ -22,6 +22,16 @@ public class Database {
             e.printStackTrace();
         }
     }
+    
+    public static boolean executeRawQuery(String query) {
+        try {
+            initConnection();
+            return statement.execute(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public static ResultSet executeQuery(String query) {
         try {

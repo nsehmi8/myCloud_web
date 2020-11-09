@@ -3,7 +3,7 @@ package json;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UserLoginResponse {
+public class UserLoginSignupResponse {
     
     @SerializedName("status_code")
     @Expose

@@ -10,7 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import json.UserLoginResponse;
+import json.UserLoginSignupResponse;
 import util.Constants;
 
 public class UserLogin extends HttpServlet {
@@ -22,7 +22,7 @@ public class UserLogin extends HttpServlet {
         String email = request.getParameter(Constants.USER_EMAIL);
         String password = request.getParameter(Constants.USER_PASSWORD);
 
-        UserLoginResponse res = new UserLoginResponse();
+        UserLoginSignupResponse res = new UserLoginSignupResponse();
         
         try {
             if (Database.executeQuery("select * from user where email = \"" + email + "\" and password = \"" + password + "\";").next())

@@ -37,7 +37,7 @@ public class GetRecents extends HttpServlet {
         ArrayList<ImageData> list = new ArrayList<>();
         
         try {
-            ResultSet query = Database.executeQuery("select upload_id, time_stamp, path from uploads inner join user on user.user_id = uploads.user_id where user.user_id = " + currentUserId);
+            ResultSet query = Database.executeQuery("select upload_id, time_stamp, path from uploads inner join user on user.user_id = uploads.user_id where user.user_id = " + currentUserId + " order by upload_id desc");
             while (query.next()) {
                 int uploadId = query.getInt(1);
                 long timestamp = Long.parseLong(query.getString(2));
@@ -67,6 +67,10 @@ public class GetRecents extends HttpServlet {
         uploads.setImages(arr);
         
         String jsonRecents = new Gson().toJson(uploads);
-        System.out.println(jsonRecents);
+        
+        PrintWriter writer = response.getWriter();
+        writer.write(jsonRecents);
+        writer.flush();
+        writer.close();
     }
 }

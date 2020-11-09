@@ -12,6 +12,14 @@
         <servlet-name>GetRecents</servlet-name>
         <servlet-class>api.GetRecents</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoveImage</servlet-name>
+        <servlet-class>api.RemoveImage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserSignup</servlet-name>
+        <servlet-class>api.UserSignup</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserLogin</servlet-name>
         <url-pattern>/UserLogin</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>GetRecents</servlet-name>
         <url-pattern>/GetRecents</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveImage</servlet-name>
+        <url-pattern>/RemoveImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserSignup</servlet-name>
+        <url-pattern>/UserSignup</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
