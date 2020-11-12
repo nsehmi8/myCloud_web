@@ -20,6 +20,14 @@
         <servlet-name>UserSignup</servlet-name>
         <servlet-class>api.UserSignup</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ImageUploader</servlet-name>
+        <servlet-class>api.ImageUploader</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetLastUpload</servlet-name>
+        <servlet-class>api.GetLastUpload</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserLogin</servlet-name>
         <url-pattern>/UserLogin</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>UserSignup</servlet-name>
         <url-pattern>/UserSignup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageUploader</servlet-name>
+        <url-pattern>/ImageUploader</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetLastUpload</servlet-name>
+        <url-pattern>/GetLastUpload</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

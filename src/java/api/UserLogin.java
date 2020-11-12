@@ -34,8 +34,6 @@ public class UserLogin extends HttpServlet {
             e.printStackTrace();
         }
 
-        System.out.println(new Gson().toJson(res));
-        
         PrintWriter pw = response.getWriter();
         response.setContentType("text/html;charset=UTF-8");
         pw.write(new Gson().toJson(res));
